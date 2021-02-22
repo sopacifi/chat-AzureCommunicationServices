@@ -1,5 +1,3 @@
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Fcommunication-services-web-chat-hero%2Fmain%2Fdeploy%2Fazuredeploy.json)
-
 # Group Chat Sample
 
 This is a sample application to show how the Chat Web SDK can be used to build a single threaded chat experience. 
@@ -7,8 +5,6 @@ The client-side application is a React based user interface which uses Redux for
 Powering this front-end is a C# web application powered by ASP.NET Core to connect this application with Azure Communication Services.
 
 Additional documentation for this sample can be found on [Microsoft Docs](https://docs.microsoft.com/en-us/azure/communication-services/samples/chat-hero-sample).
-
-![Homepage](./Media/homepage-sample-chat.png)
 
 ## Prerequisites
 
@@ -18,29 +14,24 @@ Additional documentation for this sample can be found on [Microsoft Docs](https:
 - [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1) (Make sure to install version that corresponds with your visual studio instance, 32 vs 64 bit)
 - Create an Azure Communication Services resource. For details, see [Create an Azure Communication Resource](https://docs.microsoft.com/en-us/azure/communication-services/quickstarts/create-communication-resource). You'll need to record your resource **connection string** for this quickstart.
 
-## Code structure
-
-- ./Chat/ClientApp: frontend client
-  - ./Chat/ClientApp/src
-    - ./Chat/ClientApp/src/Components : React components to help build the client app chat experience
-    - ./Chat/ClientApp/src/Containers : Connects the redux functionality to the React components
-    - ./Chat/ClientApp/src/Core : Containers a redux wrapper around the Chat SDK
-    - ./Chat/ClientApp/src/index.js : Entry point for the client app
-- ./Chat/Controllers : Server app core logic for client app to get a token to use with the Azure Communication Services Web Chat SDK
-- ./Chat/Program.cs : Server app program logic
-- ./Chat/Startup.cs: Server app startup logic
 
 ## Before running the sample for the first time
 
-1. Open an instance of PowerShell, Windows Terminal, Command Prompt or equivalent and navigate to the directory that you'd like to clone the sample to.
-2. `git clone https://github.com/Azure-Samples/communication-services-web-chat-hero.git`
-3. Get the `Connection String` from the Azure portal. For more information on connection strings, see [Create an Azure Communication Resources](https://docs.microsoft.com/en-us/azure/communication-services/quickstarts/create-communication-resource)
-4. Once you get the `Connection String`, Add the connection string to the **Chat/appsettings.json** file found under the Chat folder. Input your connection string in the variable: `ResourceConnectionString`.
+1. Add the connection string of the Azure Communication Sercive to the **Chat/appsettings.json** file found under the Chat folder. Input your connection string in the variable: `ResourceConnectionString`. (Replace REPLACE_WITH_CONNECTION_STRING)
 
 ## Local run
 
 1. Go to the Chat folder and open the `Chat.csproj` solution in Visual Studio
-2. Run the project. The browser will open at localhost:5000.
+2. Build the project, make sure that 
+3. Run the project. The browser will open at localhost:5000.
+
+## Publish to Azure
+
+1. Right click the `Chat` project and select Publish
+2. Create a new publish profile and select your app name, Azure subscription, resource group and etc.
+3. Before publish, add your connection string with `Edit App Service Settings`, and fill in `ResourceConnectionString` as key and connection string (copy from appsettings.json) as value
+
+
 
 ### Troubleshooting
 
@@ -48,11 +39,17 @@ Additional documentation for this sample can be found on [Microsoft Docs](https:
 
     Clean/rebuild the C# solution
 
-## Publish to Azure
-
-1. Right click the `Chat` project and select Publish
-2. Create a new publish profile and select your app name, Azure subscription, resource group and etc.
-3. Before publish, add your connection string with `Edit App Service Settings`, and fill in `ResourceConnectionString` as key and connection string (copy from appsettings.json) as value
+## Code structure
+- .Net SDK 
+- ./Chat/Controllers : Server app core logic for client app to get a token to use with the Azure Communication Services Web Chat SDK
+- ./Chat/Program.cs : Server app program logic
+- ./Chat/Startup.cs: Server app startup logic
+- ./Chat/ClientApp: frontend client (Running in JavaScript)
+  - ./Chat/ClientApp/src
+    - ./Chat/ClientApp/src/Components : React components to help build the client app chat experience
+    - ./Chat/ClientApp/src/Containers : Connects the redux functionality to the React components
+    - ./Chat/ClientApp/src/Core : Containers a redux wrapper around the Chat SDK
+    - ./Chat/ClientApp/src/index.js : Entry point for the client app
 
 ## Additional Reading
 
